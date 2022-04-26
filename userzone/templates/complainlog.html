@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>BLOGGING WEBSITE</title>
+
+    <style>
+#outer
+{
+min-height:950px;
+width:1000px;
+border:1px solid white;
+margin:auto;
+height:auto;
+}
+#header
+{
+height:150px;
+width:1000px;
+}#header
+{
+height:150px;
+width:1000px;
+}
+#logo
+{
+height:150px;
+width:150px;
+background-color:cyan;
+float:left;
+}
+#banner
+{
+height:150px;
+width:850px;
+background-color:teal;
+float:right;
+text-align:center;
+line-height:150px;
+}
+#menu
+{
+width:1000px;
+height:50px;
+background-color:white;
+margin-top:5px;
+border:1px solid white;
+}
+#menu ul
+{
+ list-style-type:none;
+}
+#menu ul li
+{
+ display:inline;
+}
+#menu ul li a
+{
+ font-size:25px;
+ padding:10px;
+ text-decoration:none;
+ color:black;
+}
+#menu ul li a:hover
+{
+ color:red;
+}
+#slider
+{
+width:1000px;
+height:250px;
+background-color:lightgrey;
+margin-top:5px;
+
+}
+#parent
+{
+min-height:600px;
+width:1000px;
+margin-top:5px;
+background-color:white;
+height:auto;
+}
+#footer
+{
+width:1000px;
+height:130px;
+margin-top:5px
+}
+#lf
+{
+width:500px;
+height:130px;
+background-color:black;
+color:white;
+text-align:center;
+float:right;
+}
+#rf
+{
+width:500px;
+height:130px;
+background-color:grey;
+color:white;
+text-align:center;
+float:right;
+}
+</style>
+</head>
+<body bgcolor="blue" onload="moveslider()">
+    <div id="outer">
+        <div id="header">
+            <div id="logo">
+                <img src="{% static 'images/logo21.jpg' %}" height="150px" width="150px"/>
+            </div>
+            <div id="banner">CALL PROCESSING OPTIMIZATION</div>
+        </div>
+        <div id="menu">
+               <ul>
+                <li><a href="{% url 'userzone:userhome' %}"  >User Home</a></li>
+                <li><a href="{% url 'userzone:discussion' %}"  >Discussion</a></li>
+                <li><a href="{% url 'userzone:searchsolution' %}">Search solution</a></li>
+                <li><a href="{% url 'userzone:complainlog' %}">Complain Log</a></li>
+                <li><a href="{% url 'userzone:changepassword' %}">Change password</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+
+
+
+        </div>
+        <div id="slider">
+            <img id="slide" width="1000" height="250"/>
+        </div>
+
+        <div id="parent">
+            <form action="{% url 'userzone:savecomplain' %}" method="post">
+                {% csrf_token %}
+                <h2 style="color:blue;text-align:center;">
+                    Complain Logging System
+                </h2>
+                <table border="1" style="width:80%;margin:0 auto;">
+                    <tr>
+                        <td>Enter Subject</td>
+                        <td>
+                            <input type="text" name="subject" required/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Enter Complain</td>
+                        <td>
+                            <textarea name="complaintext" required style="height:150px;resize:none;"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp</td>
+                        <td>
+                            <input type="submit" value="Submit"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="footer">
+            <div id="lf"></div>
+             <div id="rf"></div>
+        </div>
+        <div/>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>BLOGGING WEBSITE</title>
+
+    <style>
+#outer
+{
+min-height:950px;
+width:1000px;
+border:1px solid white;
+margin:auto;
+height:auto;
+}
+#header
+{
+height:150px;
+width:1000px;
+}#header
+{
+height:150px;
+width:1000px;
+}
+#logo
+{
+height:150px;
+width:150px;
+background-color:cyan;
+float:left;
+}
+#banner
+{
+height:150px;
+width:850px;
+background-color:teal;
+float:right;
+text-align:center;
+line-height:150px;
+}
+#menu
+{
+width:1000px;
+height:50px;
+background-color:white;
+margin-top:5px;
+border:1px solid white;
+}
+#menu ul
+{
+ list-style-type:none;
+}
+#menu ul li
+{
+ display:inline;
+}
+#menu ul li a
+{
+ font-size:25px;
+ padding:10px;
+ text-decoration:none;
+ color:black;
+}
+#menu ul li a:hover
+{
+ color:red;
+}
+#slider
+{
+width:1000px;
+height:250px;
+background-color:lightgrey;
+margin-top:5px;
+
+}
+#parent
+{
+min-height:600px;
+width:1000px;
+margin-top:5px;
+background-color:white;
+height:auto;
+}
+#footer
+{
+width:1000px;
+height:130px;
+margin-top:5px
+}
+#lf
+{
+width:500px;
+height:130px;
+background-color:black;
+color:white;
+text-align:center;
+float:right;
+}
+#rf
+{
+width:500px;
+height:130px;
+background-color:grey;
+color:white;
+text-align:center;
+float:right;
+}
+</style>
+<script>
+    var images=["admin1.jpg" , "admin2","complain1.jpg" ,"complain2.jpg" ,"complain3.jpg"];
+   var i=0;
+   baseUrl="{% static 'images/'%}";
+   function moveslider()
+   {
+     if (i==5)
+     {
+      i=0;
+     }
+     document.getElementById("slide").src=baseUrl+images[i];
+     i++;
+     window.setTimeout("moveslider()",1000);
+   }
+</script>
+</head>
+<body bgcolor="blue" onload="moveslider()">
+    <div id="outer">
+        <div id="header">
+            <div id="logo">
+                <img src="{% static 'images/blogparent.jpg' %}" height="150px" width="150px"/>
+            </div>
+            <div id="banner">BLOGGING WEBSITE</div>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a href="{% url 'adminzone:adminhome' %}">Admin Home</a></li>
+                <li><a href="{% url 'adminzone:enquiries' %}">Enquiries</a></li>
+                <li><a href="{% url 'adminzone:complains' %}">Complains</a></li>
+                <li><a href="{% url 'adminzone:customerinfo' %}">Customer Info</a></li>
+                <li><a href="{% url 'adminzone:knowledgebase' %}">Knowledgebase</a></li>
+                <li><a href="{% url 'adminzone:logout' %}">Logout</a></li>
+            </ul>
+
+
+        </div>
+        <div id="slider">
+            <img id="slide" width="1000" height="250"/>
+        </div>
+
+        <div id="parent">
+            <h2 style="text-align:center;color:blue;">
+                View All Complains
+            </h2>
+            <table border=1 style="margin:0 auto;width:90%;">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Email Address</th>
+                    <th>Subject</th>
+                    <th>Complain</th>
+                    <th>Date</th>
+                    <th>Delete</th>
+                </tr>
+                {% for c in comp %}
+                <tr>
+                    <td>{{c.id}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.gender}}</td>
+                    <td>{{c.address}}</td>
+                    <td>{{c.contactno}}</td>
+                    <td>{{c.emailaddress}}</td>
+                    <td>{{c.subject}}</td>
+                    <td>{{c.complaintext}}</td>
+                    <td>{{c.complaindate}}</td>
+                    <td>
+                        <a href="{% url 'adminzone:deletecomplains' c.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+        <div id="footer">
+            <div id="lf"></div>
+             <div id="rf"></div>
+        </div>
+        <div/>
+
+</body>
+</html>

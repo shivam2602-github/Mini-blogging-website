@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>BLOGGING WEBSITE</title>
+
+    <style>
+#outer
+{
+height:1200px;
+width:1000px;
+border:1px solid white;
+margin:auto;
+}
+#header
+{
+height:150px;
+width:1000px;
+}#header
+{
+height:150px;
+width:1000px;
+}
+#logo
+{
+height:150px;
+width:150px;
+background-color:cyan;
+float:left;
+}
+#banner
+{
+height:150px;
+width:850px;
+background-color:teal;
+float:right;
+text-align:center;
+line-height:150px;
+}
+#menu
+{
+width:1000px;
+height:50px;
+background-color:white;
+margin-top:5px;
+border:1px solid white;
+}
+#menu ul
+{
+ list-style-type:none;
+}
+#menu ul li
+{
+ display:inline;
+}
+#menu ul li a
+{
+ font-size:25px;
+ padding:20px;
+ text-decoration:none;
+ color:black;
+}
+#menu ul li a:hover
+{
+ color:red;
+}
+#slider
+{
+width:1000px;
+height:250px;
+background-color:lightgrey;
+margin-top:5px;
+
+}
+#parent
+{
+height:600px;
+width:1000px;
+margin-top:5px;
+}
+#left
+{
+width:300px;
+height:600px;
+background-color:cyan;
+float:left;
+}
+#main
+{
+width:700px;
+height:600px;
+background-color:white;
+float:right;
+}
+#footer
+{
+width:1000px;
+height:130px;
+margin-top:5px
+}
+#lf
+{
+width:500px;
+height:130px;
+background-color:black;
+color:white;
+text-align:center;
+float:left;
+}
+#rf
+{
+width:500px;
+height:130px;
+background-color:grey;
+color:white;
+text-align:center;
+float:right;
+}
+</style>
+<script>
+   var images=["blog1.jpg","blog2.jpg","blog3.jpg","blog4.jpg","blog5.jpg","blog6.jpg","blog7.jpg","blog8.jpg","blog9.jpg","blog10.jpg"];
+    var i=0;
+    baseUrl="{% static 'images/'%}";
+    function moveslider()
+    {
+      if (i==5)
+      {
+       i=0;
+      }
+      document.getElementById("slide").src=baseUrl+images[i];
+      i++;
+      window.setTimeout("moveslider()",2000);
+    }
+</script>
+</head>
+<body bgcolor="blue" onload="moveslider()">
+    <div id="outer">
+        <div id="header">
+            <div id="logo">
+                <img src="{% static 'images/blogparent.jpg' %}" height="150px" width="150px"/>
+            </div>
+            <div id="banner">BLOGGING WEBSITE </div>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About us</a></li>
+                <li><a href="{% url 'registration' %}">Registration</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'enquiry' %}">Enquiry</a></li>
+            </ul>
+
+
+        </div>
+        <div id="slider">
+            <img id="slide" width="1000" height="250"/>
+        </div>
+
+        <div id="parent">
+             <div id="left">
+                  <marquee direction="up" height="400" onmouseover="stop()" onmouseout="start()">
+                 {% for n in nf %}
+                 <span style="text-align:center;">
+                     <p style="color:blue;font-size:20px;">{{n.notificationtext}}</p>
+                     <p>{{n.posteddate}}</p>
+                 </span>
+                 {% endfor %}
+                 </marquee>
+             </div>
+             <div id="main"></div>
+        </div>
+        <div id="footer">
+            <div id="lf">Whether sharing your expertise, breaking news, or whatever’s on your mind, you’re in good company on Blogger.</div>
+             <div id="rf"></div>
+        </div>
+        <div/>
+
+</body>
+</html>
